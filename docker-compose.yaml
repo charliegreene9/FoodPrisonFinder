@@ -1,0 +1,32 @@
+version: '3.8'
+env_file:
+  - .env
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"  # Map Streamlit's port 8501 to localhost
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/job_scraper
+      - PYTHONPATH=.
+    depends_on:
+      - db  # Ensure the app waits for the database to be ready
+    volumes:
+      - .:/job_scraper  # Mount local files for development (optional)
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: job_scraper
+    ports:
+      - "5432:5432"  # Map PostgreSQL's port 5432 to localhost
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist database data
+
+volumes:
+  postgres_data:  # Volume for database persistence
