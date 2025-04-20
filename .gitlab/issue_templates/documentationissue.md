@@ -2,7 +2,7 @@
 
 Provide a clear and concise description of what the documentation issue is.
 
-## Location of issue 
+## Location of issue
 
 Tell us where the issue is located.
 

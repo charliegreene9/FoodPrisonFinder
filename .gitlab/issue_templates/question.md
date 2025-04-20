@@ -1,6 +1,6 @@
 ## What have you tried?
 
-Tell us why the question arose. 
+Tell us why the question arose.
 
 ## Question description
 
